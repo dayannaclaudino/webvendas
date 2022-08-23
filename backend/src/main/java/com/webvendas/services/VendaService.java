@@ -1,4 +1,4 @@
-package com.webvendas.service;
+package com.webvendas.services;
 
 import java.time.Instant;
 import java.time.LocalDate;
