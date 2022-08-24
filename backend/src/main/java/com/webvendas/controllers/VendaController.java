@@ -32,7 +32,7 @@ public class VendaController {
 		return service.findVendas(maxDate, maxDate, pageable);
 	}
 
-	@GetMapping("/{id}/notification")
+	@GetMapping("/notification/{id}")
 	public void notifySms(@PathVariable Long id) {
 		smsService.sendSms(id);
 	}
