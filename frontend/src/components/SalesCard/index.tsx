@@ -7,7 +7,7 @@ import { BASE_URL } from "../../utils/request";
 import NotificationButton from "../NotificationButton";
 import "./styles.css";
 
-function SalesCard() {
+function VendaCard() {
 
     const min = new Date(new Date().setDate(new Date().getDate() - 365));
     const max = new Date();
@@ -16,14 +16,16 @@ function SalesCard() {
     const [maxDate, setMaxDate] = useState(max);
 
     const [vendas, setVendas] = useState<Venda[]>([]); 
-
+    
     useEffect(() => {
-      axios.get(`${BASE_URL}/vendas`)
-      .then(response => {
+
+      const dmin = minDate.toISOString().slice(0,10);
+      const dmax = maxDate.toISOString().slice(0,10);
+  
+      axios.get(`${BASE_URL}/vendas?minDate=${dmin}&maxDate=${dmax}`).then((response) => {
         setVendas(response.data.content);
-        
-      });
-    }, []);
+    });
+}, [minDate, maxDate]);
 
   return (
     <div className="webvendas-card">
@@ -39,7 +41,7 @@ function SalesCard() {
           />
         </div>
         <div className="webvendas-form">
-        <DatePicker
+          <DatePicker
             selected={maxDate}
             onChange={(date: Date) => setMaxDate(date)}
             className="webvendas-form-control"
@@ -62,8 +64,7 @@ function SalesCard() {
             </tr>
           </thead>
           <tbody>
-            {
-              vendas.map(venda => {
+          {vendas.map((venda) => {
                 return (
                 <tr key={venda.id}>
                     <td className="show992">{venda.id}</td>
@@ -74,11 +75,11 @@ function SalesCard() {
                     <td>R$ {venda.total.toFixed(2)}</td>
                     <td>
                       <div className="web-vendas-btn-container">
-                        <NotificationButton />
+                        <NotificationButton vendaId={venda.id}/>
                       </div>
                     </td>
                 </tr>
-                )
+                );
               })}         
           </tbody>
         </table>
@@ -87,4 +88,4 @@ function SalesCard() {
   );
 }
 
-export default SalesCard;
+export default VendaCard;

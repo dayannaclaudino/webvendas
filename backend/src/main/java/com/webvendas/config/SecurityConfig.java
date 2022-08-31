@@ -1,5 +1,12 @@
 package com.webvendas.config;
 
+/*
+ * Realiza a liberação do Back-end para ser acessado,
+ * por outra aplicação que esta hospedada em outro 
+ * lugar.
+ * 
+ */
+
 import java.util.Arrays;
 
 import org.springframework.context.annotation.Bean;

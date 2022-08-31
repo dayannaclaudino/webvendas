@@ -18,7 +18,7 @@ public class VendaService {
 	@Autowired
 	private VendaRepository repository;
 	
-	public Page <Venda> findVendas(String minDate, String maxDate, Pageable pageable) {
+	public Page<Venda> findVendas(String minDate, String maxDate, Pageable pageable) {
 		
 		LocalDate today = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
 		
