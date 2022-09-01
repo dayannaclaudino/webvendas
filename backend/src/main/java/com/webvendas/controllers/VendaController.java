@@ -28,7 +28,7 @@ public class VendaController {
 			@RequestParam(value = "minDate", defaultValue = "") String minDate, 
 			@RequestParam(value = "maxDate", defaultValue = "") String maxDate, 
 			Pageable pageable){
-		
+			
 		return service.findVendas(maxDate, maxDate, pageable);
 	}
 
